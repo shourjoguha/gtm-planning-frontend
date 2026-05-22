@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 234 62% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 262 52% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 234 62% 52%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 234 62% 52%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 94%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 234 62% 52%;
+
+    --success: 152 56% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 224 30% 8%;
+    --foreground: 210 40% 96%;
+
+    --card: 224 25% 12%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 224 25% 12%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 234 62% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 18%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 12% 60%;
+
+    --accent: 262 52% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 234 62% 60%;
+
+    --sidebar-background: 224 30% 8%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 234 62% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 220 20% 18%;
+    --sidebar-ring: 234 62% 60%;
+
+    --success: 152 56% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Prose styling for document viewer */
+.prose-gtm h1 {
+  @apply text-3xl font-bold text-foreground mb-6 mt-8 first:mt-0;
+}
+.prose-gtm h2 {
+  @apply text-2xl font-semibold text-foreground mb-4 mt-10 pb-2 border-b border-border;
+}
+.prose-gtm h3 {
+  @apply text-xl font-semibold text-foreground mb-3 mt-8;
+}
+.prose-gtm h4 {
+  @apply text-lg font-medium text-foreground mb-2 mt-6;
+}
+.prose-gtm p {
+  @apply text-muted-foreground leading-relaxed mb-4;
+}
+.prose-gtm ul, .prose-gtm ol {
+  @apply text-muted-foreground mb-4 pl-6;
+}
+.prose-gtm li {
+  @apply mb-1.5 leading-relaxed;
+}
+.prose-gtm strong {
+  @apply text-foreground font-semibold;
+}
+.prose-gtm em {
+  @apply italic;
+}
+.prose-gtm code {
+  @apply bg-muted text-foreground px-1.5 py-0.5 rounded text-sm font-mono;
+}
+.prose-gtm pre {
+  @apply bg-muted rounded-lg p-4 mb-4 overflow-x-auto;
+}
+.prose-gtm pre code {
+  @apply bg-transparent p-0 text-sm leading-relaxed;
+}
+.prose-gtm table {
+  @apply w-full mb-6 text-sm border-collapse;
+}
+.prose-gtm thead th {
+  @apply bg-muted text-foreground font-semibold text-left px-4 py-2.5 border border-border;
+}
+.prose-gtm tbody td {
+  @apply px-4 py-2 border border-border text-muted-foreground;
+}
+.prose-gtm tbody tr:hover {
+  @apply bg-muted/50;
+}
+.prose-gtm hr {
+  @apply my-8 border-border;
+}
+.prose-gtm blockquote {
+  @apply border-l-4 border-primary pl-4 italic text-muted-foreground my-4;
+}
