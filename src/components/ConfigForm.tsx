@@ -48,25 +48,32 @@ function Section({ title, icon: Icon, defaultOpen = false, children, badge }: {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
-      <Card className="overflow-hidden">
+      <div className="border-b border-border/40 last:border-b-0">
         <CollapsibleTrigger asChild>
-          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-4">
-            <CardTitle className="flex items-center justify-between text-base">
-              <span className="flex items-center gap-2">
-                {open ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
-                <Icon className="h-4 w-4 text-primary" />
-                {title}
+          <button
+            type="button"
+            className="group w-full flex items-center justify-between py-5 text-left hover:opacity-80 transition-opacity"
+          >
+            <span className="flex items-center gap-3">
+              <ChevronRight
+                className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${open ? "rotate-90" : ""}`}
+              />
+              <Icon className="h-4 w-4 text-muted-foreground" />
+              <span className="font-display text-xl tracking-tight">{title}</span>
+            </span>
+            {badge && (
+              <span className="text-xs text-muted-foreground tabular-nums tracking-wide">
+                {badge}
               </span>
-              {badge && <Badge variant="secondary" className="text-xs">{badge}</Badge>}
-            </CardTitle>
-          </CardHeader>
+            )}
+          </button>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <CardContent className="pt-0 pb-5 space-y-4">
+          <div className="pl-7 pr-1 pb-6 space-y-4">
             {children}
-          </CardContent>
+          </div>
         </CollapsibleContent>
-      </Card>
+      </div>
     </Collapsible>
   );
 }
@@ -354,7 +361,7 @@ export default function ConfigForm({ config, onChange }: ConfigFormProps) {
   const formatCurrency = (n: number) => `$${(n / 1_000_000).toFixed(1)}M`;
 
   return (
-    <div className="space-y-3">
+    <div className="border-y border-border/40">
       {/* TARGETS */}
       <Section title="Targets" icon={Target} defaultOpen badge={formatCurrency(config.targets.annual_target)}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -375,8 +382,19 @@ export default function ConfigForm({ config, onChange }: ConfigFormProps) {
               </SelectContent>
             </Select>
           </Field>
-          <Field label="Annual Target ($)" tip={config.targets.target_source === "growth" ? "Auto-calculated from prior year × (1 + growth rate)" : "Used when target source is 'fixed'"}>
-            <Input type="number" value={config.targets.annual_target} disabled={config.targets.target_source === "growth"} onChange={(e) => update("targets", { annual_target: Number(e.target.value) })} className={config.targets.target_source === "growth" ? "opacity-70" : ""} />
+          <Field label="Annual Target ($)" tip={config.targets.target_source === "growth" ? "Editing this switches Target Source to Fixed" : "Used when target source is 'fixed'"}>
+            <Input
+              type="number"
+              value={config.targets.annual_target}
+              onChange={(e) => {
+                const value = Number(e.target.value);
+                if (config.targets.target_source === "growth") {
+                  update("targets", { target_source: "fixed", annual_target: value });
+                } else {
+                  update("targets", { annual_target: value });
+                }
+              }}
+            />
           </Field>
           <Field label="Prior Year Actuals ($)" tip="Base for growth-derived target">
             <Input type="number" value={config.targets.prior_year_actuals} onChange={(e) => {

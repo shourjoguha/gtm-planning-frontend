@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { AlertCircle, CheckCircle2, TrendingUp, DollarSign, Users, Target, Settings2, Lightbulb, Database, LineChart, BarChart3, ScatterChart, AreaChart, Plus, Trash2, FileText, FileJson } from "lucide-react";
+import { AlertCircle, CheckCircle2, TrendingUp, DollarSign, Users, Target, Settings2, Lightbulb, Database, LineChart, BarChart3, ScatterChart, AreaChart, Plus, Trash2, FileText, FileJson, Sparkles } from "lucide-react";
 import Plot from "@/components/PlotlyChart";
 
 const COLORS = [
@@ -1073,6 +1073,25 @@ export default function ResultsDashboard() {
           {[1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-24" />)}
         </div>
         <Skeleton className="h-72" />
+      </div>
+    );
+  }
+
+  // True empty state — no plan versions exist yet on the server.
+  if (!loading && versions.length === 0 && !error) {
+    return (
+      <div className="flex flex-col items-center text-center py-24 px-4">
+        <div className="h-12 w-12 rounded-full bg-muted/50 border border-border/60 flex items-center justify-center mb-6">
+          <Sparkles className="h-5 w-5 text-muted-foreground" />
+        </div>
+        <h3 className="font-display text-3xl tracking-tight mb-3">No plans yet</h3>
+        <p className="text-sm text-muted-foreground max-w-md leading-relaxed mb-6">
+          Configure targets, capacity, and allocation constraints, then run a plan to see
+          monthly bookings, AE capacity, and lever recommendations here.
+        </p>
+        <p className="text-xs text-muted-foreground/70">
+          Switch to the <span className="text-foreground font-medium">Configure</span> tab above to get started.
+        </p>
       </div>
     );
   }

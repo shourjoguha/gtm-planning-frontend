@@ -122,17 +122,14 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 h-14 flex items-center justify-between">
           <button
             onClick={() => setMenuOpen(true)}
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            className="group flex items-center gap-2.5 hover:opacity-80 transition-opacity"
           >
-            <Menu className="h-5 w-5 text-muted-foreground" />
-            <div className="text-left">
-              <h1 className="text-lg font-bold tracking-tight">GTM Planning Engine</h1>
-              <p className="text-xs text-muted-foreground">Constrained Allocation Optimizer</p>
-            </div>
+            <Menu className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+            <h1 className="font-display text-xl tracking-tight">GTM Planning Engine</h1>
           </button>
           <div className="flex items-center gap-2">
             <ConnectionStatus />
@@ -178,20 +175,29 @@ export default function Index() {
       </Sheet>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+      <main className="max-w-6xl mx-auto px-6 sm:px-8 py-10">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3 mb-6">
-            <TabsTrigger value="config" className="gap-1.5">
-              <Settings className="h-3.5 w-3.5" />
-              Setup Scenarios
+          <TabsList className="inline-flex h-9 bg-transparent border border-border/60 rounded-full p-1 mb-10">
+            <TabsTrigger
+              value="config"
+              className="rounded-full px-4 text-xs gap-1.5 data-[state=active]:bg-foreground data-[state=active]:text-background transition-all"
+            >
+              <Settings className="h-3 w-3" />
+              Configure
             </TabsTrigger>
-            <TabsTrigger value="results" className="gap-1.5">
-              <BarChart3 className="h-3.5 w-3.5" />
-              Visualize Impacts
+            <TabsTrigger
+              value="results"
+              className="rounded-full px-4 text-xs gap-1.5 data-[state=active]:bg-foreground data-[state=active]:text-background transition-all"
+            >
+              <BarChart3 className="h-3 w-3" />
+              Results
             </TabsTrigger>
-            <TabsTrigger value="docs" className="gap-1.5">
-              <BookOpen className="h-3.5 w-3.5" />
-              Detailed Fine Print
+            <TabsTrigger
+              value="docs"
+              className="rounded-full px-4 text-xs gap-1.5 data-[state=active]:bg-foreground data-[state=active]:text-background transition-all"
+            >
+              <BookOpen className="h-3 w-3" />
+              Docs
             </TabsTrigger>
           </TabsList>
 
@@ -202,12 +208,23 @@ export default function Index() {
               </div>
             ) : config ? (
               <div>
-                <div className="flex justify-end gap-2 mb-4">
-                  <Button variant="outline" size="sm" onClick={handleReset} disabled={running || !config}>
-                    <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
-                    Reset
-                  </Button>
-                  <RunPlanButton loading={running} onClick={handleRequestRun} elapsed={elapsed} status={jobStatus} />
+                <div className="mb-10 flex items-end justify-between gap-6">
+                  <div className="max-w-2xl">
+                    <h2 className="font-display text-4xl sm:text-5xl tracking-tight leading-tight">
+                      Configure your plan
+                    </h2>
+                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                      Tune targets, capacity, allocation constraints and what-if scenarios.
+                      The Run Plan button at the right ships the configuration to the engine.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <Button variant="ghost" size="sm" onClick={handleReset} disabled={running || !config} className="text-muted-foreground hover:text-foreground">
+                      <RotateCcw className="h-3.5 w-3.5 mr-1.5" />
+                      Reset
+                    </Button>
+                    <RunPlanButton loading={running} onClick={handleRequestRun} elapsed={elapsed} status={jobStatus} />
+                  </div>
                 </div>
                 <ConfigForm config={config} onChange={setConfig} />
               </div>
