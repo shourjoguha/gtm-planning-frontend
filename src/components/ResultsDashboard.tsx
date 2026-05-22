@@ -11,27 +11,28 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { AlertCircle, CheckCircle2, TrendingUp, DollarSign, Users, Target, Settings2, Lightbulb, Database, LineChart, BarChart3, ScatterChart, AreaChart, Plus, Trash2, FileText, FileJson, Sparkles } from "lucide-react";
 import Plot from "@/components/PlotlyChart";
+import { chartColor, chartAccent } from "@/lib/chartColors";
 
 const COLORS = [
-  "hsl(234, 62%, 52%)", "hsl(262, 52%, 55%)", "hsl(152, 56%, 40%)",
-  "hsl(38, 92%, 50%)", "hsl(0, 72%, 51%)", "hsl(190, 60%, 45%)",
-  "hsl(320, 50%, 50%)", "hsl(60, 60%, 45%)", "hsl(28, 75%, 50%)",
+  chartColor(1), chartColor(2), chartColor(3),
+  chartColor(4), chartColor(5), chartColor(6),
+  chartColor(1, 0.5), chartColor(2, 0.5), chartColor(3, 0.5),
 ];
 
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 const METRIC_OPTIONS = [
-  { key: "bookings", label: "Bookings", color: "hsl(152, 56%, 40%)" },
-  { key: "pipeline", label: "Pipeline", color: "hsl(234, 62%, 52%)" },
-  { key: "in_window", label: "In-Window", color: "hsl(262, 52%, 55%)" },
-  { key: "deferred", label: "Deferred", color: "hsl(38, 92%, 50%)" },
+  { key: "bookings", label: "Bookings", color: chartColor(1) },
+  { key: "pipeline", label: "Pipeline", color: chartColor(2) },
+  { key: "in_window", label: "In-Window", color: chartColor(4) },
+  { key: "deferred", label: "Deferred", color: chartColor(6) },
 ] as const;
 
 const AE_METRIC_OPTIONS = [
-  { key: "hc_tenured", label: "Tenured HC", color: "hsl(152, 56%, 40%)" },
-  { key: "hc_ramping", label: "Ramping HC", color: "hsl(262, 52%, 55%)" },
-  { key: "hc_total", label: "Total HC", color: "hsl(234, 62%, 52%)" },
-  { key: "effective_capacity_saos", label: "Capacity (SAOs)", color: "hsl(38, 92%, 50%)" },
+  { key: "hc_tenured", label: "Tenured HC", color: chartColor(1) },
+  { key: "hc_ramping", label: "Ramping HC", color: chartColor(4) },
+  { key: "hc_total", label: "Total HC", color: chartColor(2) },
+  { key: "effective_capacity_saos", label: "Capacity (SAOs)", color: chartColor(6) },
 ] as const;
 
 const PLAN_RESULT_OPTIONS = [
@@ -137,20 +138,16 @@ const CSV_PAGE_SIZE = 25;
 
 function MetricCard({ title, value, icon: Icon, subtitle }: { title: string; value: string; icon: React.ElementType; subtitle?: string }) {
   return (
-    <Card>
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-xs font-medium text-muted-foreground">{title}</p>
-            <p className="text-xl font-bold mt-1">{value}</p>
-            {subtitle && <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>}
-          </div>
-          <div className="p-2 rounded-lg bg-primary/10">
-            <Icon className="h-4 w-4 text-primary" />
-          </div>
+    <div className="border border-border/60 rounded-md bg-card px-5 py-4">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground/80">{title}</p>
+          <p className="mt-1.5 font-display text-2xl tabular-nums leading-none tracking-tight truncate">{value}</p>
+          {subtitle && <p className="text-xs text-muted-foreground mt-1.5 tabular-nums">{subtitle}</p>}
         </div>
-      </CardContent>
-    </Card>
+        <Icon className="h-4 w-4 text-muted-foreground/60 shrink-0 mt-0.5" />
+      </div>
+    </div>
   );
 }
 
@@ -429,7 +426,7 @@ function ViewInputsDialog({ open, onOpenChange, configDisplay, versionId }: View
       <DialogContent className="max-w-[85vw] w-[85vw] max-h-[80vh] bg-background/90 backdrop-blur-sm border p-0 flex flex-col overflow-hidden">
         <DialogHeader className="px-6 pt-6 pb-2">
           <DialogTitle className="flex items-center gap-2">
-            <Settings2 className="h-5 w-5 text-primary" />
+            <Settings2 className="h-4 w-4 text-muted-foreground" />
             Configuration Inputs — {versionId}
           </DialogTitle>
         </DialogHeader>
@@ -438,7 +435,7 @@ function ViewInputsDialog({ open, onOpenChange, configDisplay, versionId }: View
             {Object.entries(configDisplay).map(([section, values]) => (
               <Card key={section} className="bg-muted/30">
                 <CardHeader className="py-3 px-4">
-                  <CardTitle className="text-sm font-semibold text-primary">{section}</CardTitle>
+                  <CardTitle className="text-[10px] uppercase tracking-[0.14em] font-medium text-muted-foreground">{section}</CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-3 pt-0">
                   <dl className="space-y-1.5">
@@ -474,7 +471,7 @@ function RecommendationsDialog({ open, onOpenChange, recommendations, versionId 
       <DialogContent className="max-w-[85vw] w-[85vw] max-h-[80vh] bg-background/90 backdrop-blur-sm border p-0 flex flex-col overflow-hidden">
         <DialogHeader className="px-6 pt-6 pb-2">
           <DialogTitle className="flex items-center gap-2">
-            <Lightbulb className="h-5 w-5 text-primary" />
+            <Lightbulb className="h-4 w-4 text-muted-foreground" />
             Lever Recommendations — {versionId}
           </DialogTitle>
         </DialogHeader>
@@ -509,11 +506,11 @@ function RecommendationsDialog({ open, onOpenChange, recommendations, versionId 
                     {leverBlocks.map((block, j) => {
                       const gapClosed = block.includes(">>> Gap closed");
                       return (
-                        <Card key={j} className={`${gapClosed ? "border-green-500/50 bg-green-500/5" : "bg-muted/30"}`}>
+                        <Card key={j} className={`${gapClosed ? "border-accent/40 bg-accent-soft/60" : "bg-muted/30"}`}>
                           <CardContent className="p-4">
                             <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-foreground">{block.trim()}</pre>
                             {gapClosed && (
-                              <Badge className="mt-2 bg-green-500/20 text-green-700 border-green-500/30">✓ Gap closed at this point</Badge>
+                              <Badge className="mt-2 bg-accent-soft text-accent border-accent/30">✓ Gap closed at this point</Badge>
                             )}
                           </CardContent>
                         </Card>
@@ -576,8 +573,8 @@ function ViewDataDialog({ open, onOpenChange, csvFiles, versionId }: ViewDataDia
       <DialogContent className="max-w-[90vw] w-[90vw] max-h-[85vh] bg-background/90 backdrop-blur-sm border p-0 flex flex-col overflow-hidden">
         <DialogHeader className="px-6 pt-6 pb-1 pr-12">
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <DialogTitle className="flex items-center gap-2 text-lg font-bold">
-              <Database className="h-5 w-5 text-primary" />
+            <DialogTitle className="flex items-center gap-2 font-display text-xl tracking-tight">
+              <Database className="h-4 w-4 text-muted-foreground" />
               View Data — {versionId}
             </DialogTitle>
             <Select value={selectedFile} onValueChange={handleFileChange}>
@@ -597,13 +594,13 @@ function ViewDataDialog({ open, onOpenChange, csvFiles, versionId }: ViewDataDia
             <Table>
               <TableHeader>
                 <TableRow className="border-b-0">
-                  <TableHead className="whitespace-nowrap text-xl font-bold text-white bg-[hsl(220,20%,22%)] border-r border-white/10 last:border-r-0 py-3">
+                  <TableHead className="whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground bg-muted/40 border-b border-border/60 py-2.5">
                     #
                   </TableHead>
                   {parsed.headers.map((h, i) => (
                     <TableHead
                       key={i}
-                      className="whitespace-nowrap text-xl font-bold text-white bg-[hsl(220,20%,22%)] border-r border-white/10 last:border-r-0 py-3"
+                      className="whitespace-nowrap text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground bg-muted/40 border-b border-border/60 py-2.5"
                     >
                       {h.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
                     </TableHead>
@@ -1182,8 +1179,8 @@ export default function ResultsDashboard() {
     type: customTraceProps.type,
     mode: customTraceProps.mode,
     fill: customTraceProps.fill,
-    marker: { color: "hsl(234, 62%, 52%)" },
-    line: customTraceProps.line ? { ...customTraceProps.line, color: "hsl(234, 62%, 52%)", width: 2 } : { color: "hsl(234, 62%, 52%)", width: 2 },
+    marker: { color: chartAccent() },
+    line: customTraceProps.line ? { ...customTraceProps.line, color: chartAccent(), width: 2 } : { color: chartAccent(), width: 2 },
     hovertemplate: `${customYLabel}: %{y:${yHoverFmt}}<extra></extra>`,
   }];
 
@@ -1271,7 +1268,7 @@ export default function ResultsDashboard() {
           <DialogContent className="max-w-[90vw] w-[90vw] max-h-[85vh] bg-background/90 backdrop-blur-sm border p-0 flex flex-col overflow-hidden">
             <DialogHeader className="px-6 pt-5 pb-2 pr-12">
               <DialogTitle className="flex items-center gap-2">
-                <FileText className="h-5 w-5 text-primary" />
+                <FileText className="h-4 w-4 text-muted-foreground" />
                 Configuration — {selectedVersion}
               </DialogTitle>
             </DialogHeader>
@@ -1280,7 +1277,7 @@ export default function ResultsDashboard() {
                 {Object.entries(parseYamlToSections(configYaml)).map(([section, { entries }]) => (
                   <Card key={section} className="bg-muted/30 break-inside-avoid mb-3">
                     <CardHeader className="py-2 px-3">
-                      <CardTitle className="text-sm font-semibold text-primary">{section}</CardTitle>
+                      <CardTitle className="text-[10px] uppercase tracking-[0.14em] font-medium text-muted-foreground">{section}</CardTitle>
                     </CardHeader>
                     <CardContent className="px-3 pb-2 pt-0">
                       <dl className="space-y-0.5">
@@ -1304,7 +1301,7 @@ export default function ResultsDashboard() {
           <DialogContent className="max-w-[75vw] w-[75vw] max-h-[80vh] bg-background/90 backdrop-blur-sm border p-0 flex flex-col overflow-hidden">
             <DialogHeader className="px-6 pt-6 pb-2 pr-12">
               <DialogTitle className="flex items-center gap-2">
-                <FileJson className="h-5 w-5 text-primary" />
+                <FileJson className="h-4 w-4 text-muted-foreground" />
                 lever_summary.json — {selectedVersion}
               </DialogTitle>
             </DialogHeader>
@@ -1323,7 +1320,7 @@ export default function ResultsDashboard() {
         <DialogContent className="max-w-[85vw] w-[85vw] max-h-[80vh] bg-background/90 backdrop-blur-sm border p-0 flex flex-col overflow-hidden">
           <DialogHeader className="px-6 pt-6 pb-2 pr-12">
             <DialogTitle className="flex items-center gap-2">
-              <Lightbulb className="h-5 w-5 text-primary" />
+              <Lightbulb className="h-4 w-4 text-muted-foreground" />
               Recommendations — {selectedVersion}
             </DialogTitle>
           </DialogHeader>
@@ -1358,11 +1355,11 @@ export default function ResultsDashboard() {
                         {leverBlocks.map((block, j) => {
                           const gapClosed = block.includes(">>> Gap closed");
                           return (
-                            <Card key={j} className={`${gapClosed ? "border-green-500/50 bg-green-500/5" : "bg-muted/30"}`}>
+                            <Card key={j} className={`${gapClosed ? "border-accent/40 bg-accent-soft/60" : "bg-muted/30"}`}>
                               <CardContent className="p-4">
                                 <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-foreground">{block.trim()}</pre>
                                 {gapClosed && (
-                                  <Badge className="mt-2 bg-green-500/20 text-green-700 border-green-500/30">✓ Gap closed at this point</Badge>
+                                  <Badge className="mt-2 bg-accent-soft text-accent border-accent/30">✓ Gap closed at this point</Badge>
                                 )}
                               </CardContent>
                             </Card>

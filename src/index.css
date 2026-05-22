@@ -1,99 +1,125 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* ────────────────────────────────────────────────────────────
+     Editorial mono palette — warm off-white base, near-black ink,
+     single emerald accent. No competing hues anywhere else.
+     ──────────────────────────────────────────────────────────── */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 36 25% 98%;
+    --foreground: 224 22% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 224 22% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 224 22% 12%;
 
-    --primary: 234 62% 52%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary = foreground (mono CTA, no competing hue) */
+    --primary: 224 22% 12%;
+    --primary-foreground: 36 25% 98%;
 
-    --secondary: 220 14% 94%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 30 10% 95%;
+    --secondary-foreground: 224 22% 12%;
 
-    --muted: 220 14% 94%;
+    --muted: 30 8% 95%;
     --muted-foreground: 220 9% 46%;
 
-    --accent: 262 52% 55%;
-    --accent-foreground: 0 0% 100%;
+    /* Single restrained accent — deep emerald, used sparingly */
+    --accent: 158 52% 28%;
+    --accent-foreground: 36 25% 98%;
+    --accent-soft: 158 28% 92%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 65% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 234 62% 52%;
+    --border: 30 10% 90%;
+    --input: 30 10% 90%;
+    --ring: 224 22% 22%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 234 62% 52%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 94%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 234 62% 52%;
+    --sidebar-background: 36 25% 98%;
+    --sidebar-foreground: 224 22% 12%;
+    --sidebar-primary: 224 22% 12%;
+    --sidebar-primary-foreground: 36 25% 98%;
+    --sidebar-accent: 30 8% 95%;
+    --sidebar-accent-foreground: 224 22% 12%;
+    --sidebar-border: 30 10% 90%;
+    --sidebar-ring: 224 22% 22%;
 
-    --success: 152 56% 40%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
+    --success: 158 52% 28%;
+    --success-foreground: 36 25% 98%;
+    --warning: 32 92% 45%;
     --warning-foreground: 0 0% 100%;
+
+    /* Chart palette — derives from the mono+accent system.
+       chart-1 is the saturated accent, the rest descend in steps
+       of luminance for clarity-on-print rather than chroma. */
+    --chart-1: 158 52% 28%;
+    --chart-2: 224 22% 12%;
+    --chart-3: 220 9% 46%;
+    --chart-4: 158 32% 52%;
+    --chart-5: 220 13% 75%;
+    --chart-6: 32 80% 45%;
   }
 
   .dark {
-    --background: 224 30% 8%;
-    --foreground: 210 40% 96%;
+    --background: 224 27% 6%;
+    --foreground: 30 12% 96%;
 
-    --card: 224 25% 12%;
-    --card-foreground: 210 40% 96%;
+    --card: 224 24% 10%;
+    --card-foreground: 30 12% 96%;
 
-    --popover: 224 25% 12%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 224 24% 10%;
+    --popover-foreground: 30 12% 96%;
 
-    --primary: 234 62% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 30 12% 96%;
+    --primary-foreground: 224 27% 6%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 210 40% 96%;
+    --secondary: 224 18% 14%;
+    --secondary-foreground: 30 12% 96%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 12% 60%;
+    --muted: 224 18% 14%;
+    --muted-foreground: 220 10% 60%;
 
-    --accent: 262 52% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 158 48% 48%;
+    --accent-foreground: 224 27% 6%;
+    --accent-soft: 158 32% 16%;
 
-    --destructive: 0 62% 45%;
+    --destructive: 0 55% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 18%;
-    --input: 220 20% 18%;
-    --ring: 234 62% 60%;
+    --border: 224 18% 16%;
+    --input: 224 18% 16%;
+    --ring: 30 12% 80%;
 
-    --sidebar-background: 224 30% 8%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 234 62% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 18%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 220 20% 18%;
-    --sidebar-ring: 234 62% 60%;
+    --sidebar-background: 224 27% 6%;
+    --sidebar-foreground: 30 12% 96%;
+    --sidebar-primary: 30 12% 96%;
+    --sidebar-primary-foreground: 224 27% 6%;
+    --sidebar-accent: 224 18% 14%;
+    --sidebar-accent-foreground: 30 12% 96%;
+    --sidebar-border: 224 18% 16%;
+    --sidebar-ring: 30 12% 80%;
 
-    --success: 152 56% 40%;
-    --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --success: 158 48% 48%;
+    --success-foreground: 224 27% 6%;
+    --warning: 32 80% 55%;
+    --warning-foreground: 224 27% 6%;
+
+    --chart-1: 158 48% 48%;
+    --chart-2: 30 12% 96%;
+    --chart-3: 220 10% 60%;
+    --chart-4: 158 32% 62%;
+    --chart-5: 220 13% 35%;
+    --chart-6: 32 80% 55%;
   }
 }
 
@@ -105,21 +131,37 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "ss01", "cv11", "cv02";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Numerals: always tabular for tabular contexts (KPIs, tables). */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Editorial decoration — used in heroes and section headings. */
+  .font-display {
+    font-feature-settings: "ss01";
+    letter-spacing: -0.01em;
   }
 }
 
-/* Prose styling for document viewer */
+/* ────────────────────────────────────────────────────────────
+   Prose styling for in-app docs
+   ──────────────────────────────────────────────────────────── */
 .prose-gtm h1 {
-  @apply text-3xl font-bold text-foreground mb-6 mt-8 first:mt-0;
+  @apply font-display text-4xl tracking-tight text-foreground mb-6 mt-8 first:mt-0;
 }
 .prose-gtm h2 {
-  @apply text-2xl font-semibold text-foreground mb-4 mt-10 pb-2 border-b border-border;
+  @apply font-display text-2xl tracking-tight text-foreground mb-4 mt-10 pb-2 border-b border-border/60;
 }
 .prose-gtm h3 {
-  @apply text-xl font-semibold text-foreground mb-3 mt-8;
+  @apply text-lg font-semibold tracking-tight text-foreground mb-3 mt-8;
 }
 .prose-gtm h4 {
-  @apply text-lg font-medium text-foreground mb-2 mt-6;
+  @apply text-base font-medium text-foreground mb-2 mt-6;
 }
 .prose-gtm p {
   @apply text-muted-foreground leading-relaxed mb-4;
@@ -137,10 +179,10 @@
   @apply italic;
 }
 .prose-gtm code {
-  @apply bg-muted text-foreground px-1.5 py-0.5 rounded text-sm font-mono;
+  @apply bg-muted text-foreground px-1.5 py-0.5 rounded text-[0.85em] font-mono;
 }
 .prose-gtm pre {
-  @apply bg-muted rounded-lg p-4 mb-4 overflow-x-auto;
+  @apply bg-muted rounded-md p-4 mb-4 overflow-x-auto;
 }
 .prose-gtm pre code {
   @apply bg-transparent p-0 text-sm leading-relaxed;
@@ -149,17 +191,17 @@
   @apply w-full mb-6 text-sm border-collapse;
 }
 .prose-gtm thead th {
-  @apply bg-muted text-foreground font-semibold text-left px-4 py-2.5 border border-border;
+  @apply text-foreground font-medium text-left px-3 py-2 border-b border-border/60;
 }
 .prose-gtm tbody td {
-  @apply px-4 py-2 border border-border text-muted-foreground;
+  @apply px-3 py-2 border-b border-border/40 text-muted-foreground;
 }
 .prose-gtm tbody tr:hover {
-  @apply bg-muted/50;
+  @apply bg-muted/40;
 }
 .prose-gtm hr {
-  @apply my-8 border-border;
+  @apply my-8 border-border/60;
 }
 .prose-gtm blockquote {
-  @apply border-l-4 border-primary pl-4 italic text-muted-foreground my-4;
+  @apply border-l-2 border-foreground/30 pl-4 italic text-muted-foreground my-4;
 }

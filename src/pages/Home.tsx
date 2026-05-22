@@ -26,9 +26,9 @@ import screenshotDocs from "@/assets/screenshot-docs.png";
 const displayFont = "font-display";
 
 const TABS = [
-  { key: "results", label: "Visualize Impacts", icon: BarChart3, img: screenshotResults },
-  { key: "config", label: "Setup Scenarios", icon: Settings, img: screenshotConfig },
-  { key: "docs", label: "Detailed Fine Print", icon: BookOpen, img: screenshotDocs },
+  { key: "results", label: "Results", icon: BarChart3, img: screenshotResults },
+  { key: "config", label: "Configure", icon: Settings, img: screenshotConfig },
+  { key: "docs", label: "Docs", icon: BookOpen, img: screenshotDocs },
 ] as const;
 
 const BEFORE_ITEMS = ["Manual spreadsheet allocation", "Gut-feel territory splits", "No visibility into trade-offs"];
@@ -191,7 +191,7 @@ export default function Home() {
             <Link
               to="/"
               onClick={() => setMenuOpen(false)}
-              className="flex items-center gap-3 w-full px-3 py-2.5 rounded-md text-sm bg-primary text-primary-foreground font-medium"
+              className="flex items-center gap-3 w-full px-3 py-2.5 rounded-md text-sm bg-foreground text-background font-medium"
             >
               <HomeIcon className="h-4 w-4" />
               Home
@@ -255,7 +255,7 @@ export default function Home() {
         >
           Stop guessing your
           <br />
-          <span className={`text-primary italic`}>GTM allocation.</span>
+          <span className="italic text-accent">GTM allocation.</span>
         </h2>
         <p className="mt-4 text-lg text-muted-foreground max-w-lg mx-auto">
           Math-driven GTM allocation. Not guesswork.
@@ -297,11 +297,11 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className="p-5 text-left flex flex-col h-full bg-muted/30">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-3">After</p>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-3">After</p>
                   <ul className="space-y-2 flex-1 flex flex-col justify-center">
                     {AFTER_ITEMS.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-sm text-foreground font-medium">
-                        <Check className="h-3.5 w-3.5 shrink-0 mt-0.5 text-emerald-600" />
+                        <Check className="h-3.5 w-3.5 shrink-0 mt-0.5 text-accent" />
                         {item}
                       </li>
                     ))}
@@ -348,7 +348,7 @@ export default function Home() {
                   }}
                   className={`flex items-center justify-center gap-2 py-6 px-4 text-sm font-medium transition-all duration-300 ease-in-out border border-border ${
                     isActive
-                      ? "flex-[2] bg-primary text-primary-foreground shadow-md"
+                      ? "flex-[2] bg-foreground text-background shadow-md"
                       : "flex-[1] bg-card text-foreground hover:bg-accent/10"
                   } ${isFirst ? "rounded-l-lg" : "border-l-0"} ${isLast ? "rounded-r-lg" : ""} ${!isFirst && !isLast ? "rounded-none" : ""}`}
                 >
@@ -403,7 +403,7 @@ export default function Home() {
                 style={{ clipPath }}
                 className={`relative transition-all duration-300 ease-in-out py-6 flex items-center justify-center gap-2 text-sm font-semibold ${
                   isActive
-                    ? "flex-[2] bg-primary text-primary-foreground"
+                    ? "flex-[2] bg-foreground text-background"
                     : "flex-[1] bg-muted text-foreground hover:bg-muted/80"
                 } ${!isFirst ? "-ml-[2px]" : ""}`}
               >
@@ -426,7 +426,7 @@ export default function Home() {
             <Card className="h-full">
               <CardContent className="p-6 md:p-8 h-full flex items-center">
                 <div className="flex items-start gap-4 w-full">
-                  <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-lg font-bold shrink-0">
+                  <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center text-lg font-bold shrink-0">
                     {activeStepData.num}
                   </div>
                   <div>

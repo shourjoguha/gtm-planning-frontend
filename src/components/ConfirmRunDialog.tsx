@@ -150,8 +150,8 @@ export default function ConfirmRunDialog({ open, onOpenChange, config, onConfirm
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent className="max-w-[80vw] w-[80vw] max-h-[80vh] p-0 flex flex-col overflow-hidden">
         <AlertDialogHeader className="px-6 pt-6 pb-2">
-          <AlertDialogTitle className="flex items-center gap-2">
-            <Settings2 className="h-5 w-5 text-primary" />
+          <AlertDialogTitle className="flex items-center gap-2 font-display text-xl tracking-tight">
+            <Settings2 className="h-4 w-4 text-muted-foreground" />
             Confirm Run Plan
           </AlertDialogTitle>
           <AlertDialogDescription>
@@ -162,9 +162,9 @@ export default function ConfirmRunDialog({ open, onOpenChange, config, onConfirm
         <div className="px-6 pb-4 overflow-y-auto flex-1" style={{ maxHeight: "calc(80vh - 140px)" }}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pr-2">
             {Object.entries(display).map(([section, values]) => (
-              <Card key={section} className="bg-muted/30">
+              <Card key={section} className="bg-muted/40 border-border/40">
                 <CardHeader className="py-3 px-4">
-                  <CardTitle className="text-sm font-semibold text-primary">{section}</CardTitle>
+                  <CardTitle className="text-[10px] uppercase tracking-[0.14em] font-medium text-muted-foreground">{section}</CardTitle>
                 </CardHeader>
                 <CardContent className="px-4 pb-3 pt-0">
                   <dl className="space-y-1.5">

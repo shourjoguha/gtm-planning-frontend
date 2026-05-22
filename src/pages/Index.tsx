@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import ConfigForm from "@/components/ConfigForm";
+import QuickSetup from "@/components/QuickSetup";
 import ResultsDashboard from "@/components/ResultsDashboard";
 import DocumentViewer from "@/components/DocumentViewer";
 import RunPlanButton from "@/components/RunPlanButton";
@@ -161,7 +162,7 @@ export default function Index() {
                   onClick={() => navigateTo(item.value)}
                   className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-md text-sm transition-colors ${
                     isActive
-                      ? "bg-primary text-primary-foreground font-medium"
+                      ? "bg-foreground text-background font-medium"
                       : "hover:bg-muted text-foreground"
                   }`}
                 >
@@ -208,14 +209,17 @@ export default function Index() {
               </div>
             ) : config ? (
               <div>
-                <div className="mb-10 flex items-end justify-between gap-6">
+                <div className="mb-8 flex items-end justify-between gap-6">
                   <div className="max-w-2xl">
-                    <h2 className="font-display text-4xl sm:text-5xl tracking-tight leading-tight">
-                      Configure your plan
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground/80 mb-3">
+                      Plan configuration
+                    </p>
+                    <h2 className="font-display text-4xl sm:text-5xl tracking-tight leading-[1.05]">
+                      Build a plan.
                     </h2>
-                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                      Tune targets, capacity, allocation constraints and what-if scenarios.
-                      The Run Plan button at the right ships the configuration to the engine.
+                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-md">
+                      Tune targets, capacity, allocation constraints. Run the plan to see
+                      monthly bookings, AE capacity, and lever recommendations.
                     </p>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
@@ -225,6 +229,9 @@ export default function Index() {
                     </Button>
                     <RunPlanButton loading={running} onClick={handleRequestRun} elapsed={elapsed} status={jobStatus} />
                   </div>
+                </div>
+                <div className="mb-10">
+                  <QuickSetup config={config} onChange={setConfig} />
                 </div>
                 <ConfigForm config={config} onChange={setConfig} />
               </div>

@@ -31,7 +31,7 @@ function InfoTip({ text }: { text: string }) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <span className="inline-flex items-center justify-center w-4 h-4 ml-1.5 rounded-full bg-muted text-muted-foreground text-[10px] font-bold cursor-help hover:bg-primary hover:text-primary-foreground transition-colors">?</span>
+        <span className="inline-flex items-center justify-center w-4 h-4 ml-1.5 rounded-full bg-muted text-muted-foreground/70 text-[10px] font-medium cursor-help hover:bg-foreground hover:text-background transition-colors">?</span>
       </TooltipTrigger>
       <TooltipContent className="max-w-xs text-sm">{text}</TooltipContent>
     </Tooltip>
@@ -464,7 +464,7 @@ export default function ConfigForm({ config, onChange }: ConfigFormProps) {
         <p className="text-sm text-muted-foreground mb-3">Toggle which dimensions are active in the optimization. Active dimensions multiply the segment count.</p>
         <div className="space-y-3">
           {(Object.keys(config.dimensions) as Array<keyof GTMConfig["dimensions"]>).map((dim) => (
-            <div key={dim} className="flex items-center justify-between p-3 rounded-lg bg-muted/50">
+            <div key={dim} className="flex items-center justify-between p-3 rounded-md bg-muted/40 border border-border/40">
               <div>
                 <span className="font-medium capitalize">{dim.replace("_", " ")}</span>
                 <span className="text-xs text-muted-foreground ml-2">
