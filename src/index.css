@@ -12,62 +12,63 @@
      single emerald accent. No competing hues anywhere else.
      ──────────────────────────────────────────────────────────── */
   :root {
-    --background: 36 25% 98%;
-    --foreground: 224 22% 12%;
+    --background: 36 22% 99%;
+    --foreground: 224 24% 14%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 22% 12%;
+    --card-foreground: 224 24% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 224 22% 12%;
+    --popover-foreground: 224 24% 14%;
 
     /* Primary = foreground (mono CTA, no competing hue) */
-    --primary: 224 22% 12%;
-    --primary-foreground: 36 25% 98%;
+    --primary: 224 24% 14%;
+    --primary-foreground: 36 22% 99%;
 
-    --secondary: 30 10% 95%;
-    --secondary-foreground: 224 22% 12%;
+    --secondary: 30 10% 96%;
+    --secondary-foreground: 224 24% 14%;
 
-    --muted: 30 8% 95%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 30 8% 96%;
+    --muted-foreground: 220 9% 50%;
 
-    /* Single restrained accent — deep emerald, used sparingly */
-    --accent: 158 52% 28%;
-    --accent-foreground: 36 25% 98%;
-    --accent-soft: 158 28% 92%;
+    /* Single restrained accent — vibrant but grounded emerald */
+    --accent: 158 60% 38%;
+    --accent-foreground: 36 22% 99%;
+    --accent-soft: 158 36% 93%;
 
     --destructive: 0 65% 48%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 10% 90%;
-    --input: 30 10% 90%;
-    --ring: 224 22% 22%;
+    --border: 30 10% 91%;
+    --input: 30 10% 91%;
+    --ring: 224 24% 22%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 36 25% 98%;
-    --sidebar-foreground: 224 22% 12%;
-    --sidebar-primary: 224 22% 12%;
-    --sidebar-primary-foreground: 36 25% 98%;
-    --sidebar-accent: 30 8% 95%;
-    --sidebar-accent-foreground: 224 22% 12%;
-    --sidebar-border: 30 10% 90%;
-    --sidebar-ring: 224 22% 22%;
+    --sidebar-background: 36 22% 99%;
+    --sidebar-foreground: 224 24% 14%;
+    --sidebar-primary: 224 24% 14%;
+    --sidebar-primary-foreground: 36 22% 99%;
+    --sidebar-accent: 30 8% 96%;
+    --sidebar-accent-foreground: 224 24% 14%;
+    --sidebar-border: 30 10% 91%;
+    --sidebar-ring: 224 24% 22%;
 
-    --success: 158 52% 28%;
-    --success-foreground: 36 25% 98%;
-    --warning: 32 92% 45%;
+    --success: 158 60% 38%;
+    --success-foreground: 36 22% 99%;
+    --warning: 32 92% 48%;
     --warning-foreground: 0 0% 100%;
 
-    /* Chart palette — derives from the mono+accent system.
-       chart-1 is the saturated accent, the rest descend in steps
-       of luminance for clarity-on-print rather than chroma. */
-    --chart-1: 158 52% 28%;
-    --chart-2: 224 22% 12%;
-    --chart-3: 220 9% 46%;
-    --chart-4: 158 32% 52%;
-    --chart-5: 220 13% 75%;
-    --chart-6: 32 80% 45%;
+    /* Chart palette — chart-1 is saturated emerald, chart-2 is a soft
+       graphite (not pure foreground; avoids "cloudy" feel under area fill),
+       chart-3..5 step through muted tones, chart-6 is amber for one warm
+       counter-trace when needed. */
+    --chart-1: 158 60% 38%;
+    --chart-2: 220 16% 38%;
+    --chart-3: 220 12% 58%;
+    --chart-4: 158 38% 62%;
+    --chart-5: 220 14% 78%;
+    --chart-6: 28 78% 52%;
   }
 
   .dark {
@@ -149,28 +150,59 @@
 }
 
 /* ────────────────────────────────────────────────────────────
-   Prose styling for in-app docs
+   Prose styling for in-app docs — editorial, generous, restrained
    ──────────────────────────────────────────────────────────── */
+.prose-gtm {
+  font-size: 15px;
+  line-height: 1.75;
+  color: hsl(var(--foreground));
+}
 .prose-gtm h1 {
-  @apply font-display text-4xl tracking-tight text-foreground mb-6 mt-8 first:mt-0;
+  @apply font-display text-[2.5rem] tracking-tight text-foreground mb-3 mt-12 first:mt-0;
+  line-height: 1.05;
+}
+.prose-gtm h1 + p {
+  @apply text-base text-muted-foreground mt-0 mb-10;
 }
 .prose-gtm h2 {
-  @apply font-display text-2xl tracking-tight text-foreground mb-4 mt-10 pb-2 border-b border-border/60;
+  @apply font-display text-[1.75rem] tracking-tight text-foreground mb-3 mt-14 pb-3 border-b border-border/60;
+  line-height: 1.15;
 }
 .prose-gtm h3 {
-  @apply text-lg font-semibold tracking-tight text-foreground mb-3 mt-8;
+  @apply font-display text-[1.35rem] tracking-tight text-foreground mb-2 mt-10;
+  line-height: 1.2;
 }
 .prose-gtm h4 {
-  @apply text-base font-medium text-foreground mb-2 mt-6;
+  @apply text-[15px] uppercase tracking-[0.08em] font-medium text-foreground mb-2 mt-8;
 }
 .prose-gtm p {
-  @apply text-muted-foreground leading-relaxed mb-4;
+  @apply text-foreground/85 mb-5;
 }
 .prose-gtm ul, .prose-gtm ol {
-  @apply text-muted-foreground mb-4 pl-6;
+  @apply text-foreground/85 mb-5 pl-5 space-y-1.5;
+}
+.prose-gtm ul {
+  list-style-type: none;
+}
+.prose-gtm ul > li::before {
+  content: "—";
+  color: hsl(var(--muted-foreground));
+  display: inline-block;
+  width: 1rem;
+  margin-left: -1.25rem;
+  margin-right: 0.25rem;
+}
+.prose-gtm ol {
+  list-style: decimal;
+}
+.prose-gtm ol::marker {
+  color: hsl(var(--muted-foreground));
 }
 .prose-gtm li {
-  @apply mb-1.5 leading-relaxed;
+  @apply leading-relaxed;
+}
+.prose-gtm a {
+  @apply text-foreground border-b border-foreground/30 hover:border-foreground transition-colors;
 }
 .prose-gtm strong {
   @apply text-foreground font-semibold;
@@ -180,28 +212,35 @@
 }
 .prose-gtm code {
   @apply bg-muted text-foreground px-1.5 py-0.5 rounded text-[0.85em] font-mono;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 .prose-gtm pre {
-  @apply bg-muted rounded-md p-4 mb-4 overflow-x-auto;
+  @apply bg-muted/60 border border-border/60 rounded-md p-4 mb-5 overflow-x-auto;
 }
 .prose-gtm pre code {
-  @apply bg-transparent p-0 text-sm leading-relaxed;
+  @apply bg-transparent p-0 text-[13px] leading-relaxed;
 }
 .prose-gtm table {
-  @apply w-full mb-6 text-sm border-collapse;
+  @apply w-full mb-6 text-[14px] border-collapse;
 }
 .prose-gtm thead th {
-  @apply text-foreground font-medium text-left px-3 py-2 border-b border-border/60;
+  @apply text-[10px] uppercase tracking-[0.1em] text-muted-foreground font-medium text-left px-3 py-2.5 border-b border-border/60;
 }
 .prose-gtm tbody td {
-  @apply px-3 py-2 border-b border-border/40 text-muted-foreground;
+  @apply px-3 py-2.5 border-b border-border/40 text-foreground/85;
+}
+.prose-gtm tbody tr:last-child td {
+  @apply border-b-0;
 }
 .prose-gtm tbody tr:hover {
-  @apply bg-muted/40;
+  @apply bg-muted/30;
 }
 .prose-gtm hr {
-  @apply my-8 border-border/60;
+  @apply my-10 border-border/60;
 }
 .prose-gtm blockquote {
-  @apply border-l-2 border-foreground/30 pl-4 italic text-muted-foreground my-4;
+  @apply border-l-2 border-accent/60 pl-5 italic text-foreground/75 my-6 py-1;
+}
+.prose-gtm blockquote p {
+  @apply mb-2 last:mb-0;
 }

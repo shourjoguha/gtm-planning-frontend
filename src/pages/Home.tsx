@@ -18,6 +18,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
+import Reveal from "@/components/Reveal";
 
 import screenshotResults from "@/assets/screenshot-results.png";
 import screenshotConfig from "@/assets/screenshot-config.png";
@@ -148,13 +149,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b bg-card sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-background/80 border-b border-border/60">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 h-14 flex items-center justify-between">
           <button
             onClick={() => setMenuOpen(true)}
             className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            <h1 className={`text-lg font-normal tracking-tight ${displayFont}`}>GTM Planning Engine</h1>
+            <h1 className={`text-xl font-normal tracking-tight ${displayFont}`}>GTM Planning Engine</h1>
           </button>
           <div className="flex items-center gap-3">
             <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground mr-2">
@@ -249,68 +250,74 @@ export default function Home() {
       </Sheet>
 
       {/* Hero */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16 text-center">
-        <h2
-          className={`text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight text-foreground leading-none ${displayFont}`}
-        >
-          Stop guessing your
-          <br />
-          <span className="italic text-accent">GTM allocation.</span>
-        </h2>
-        <p className="mt-4 text-lg text-muted-foreground max-w-lg mx-auto">
-          Math-driven GTM allocation. Not guesswork.
-        </p>
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <Link to="/engine">
-            <Button
-              size="lg"
-              className="text-base px-8 py-3 rounded-md bg-foreground text-background hover:bg-foreground/90"
-            >
-              Get Started
-            </Button>
-          </Link>
-          <Button
-            variant="outline"
-            size="lg"
-            className="text-base px-8 py-3 rounded-md border-foreground/20"
-            onClick={() => scrollTo("how-it-works")}
+      <section className="max-w-5xl mx-auto px-6 sm:px-8 pt-20 pb-24 md:pt-28 md:pb-32 text-center">
+        <Reveal>
+          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground/80 mb-6">
+            GTM Planning Engine
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2
+            className={`text-5xl sm:text-6xl md:text-7xl font-normal tracking-tight text-foreground leading-[0.95] ${displayFont}`}
           >
-            How It Works
-          </Button>
-        </div>
+            Stop guessing your
+            <br />
+            <span className="italic text-accent">GTM allocation.</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={180}>
+          <p className="mt-6 text-base sm:text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
+            Math-driven sales planning. Capacity, ROI, and lever recommendations
+            from a single configuration.
+          </p>
+        </Reveal>
+        <Reveal delay={280}>
+          <div className="mt-10 flex items-center justify-center gap-3">
+            <Link to="/engine">
+              <Button
+                className="h-10 px-6 rounded-full bg-foreground text-background hover:bg-foreground/90 text-sm tracking-wide"
+              >
+                Launch the Engine
+              </Button>
+            </Link>
+            <Button
+              variant="ghost"
+              className="h-10 px-5 text-sm tracking-wide text-muted-foreground hover:text-foreground"
+              onClick={() => scrollTo("how-it-works")}
+            >
+              How it works →
+            </Button>
+          </div>
+        </Reveal>
 
-        {/* Consolidated comparison strip */}
-        <div className="mt-10 max-w-2xl mx-auto">
-          <Card className="bg-card backdrop-blur border rounded-xl">
-            <CardContent className="p-0">
-              <div className="grid grid-cols-2 divide-x divide-border">
-                <div className="p-5 text-left flex flex-col h-full">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 mb-3">
-                    Before
-                  </p>
-                  <ul className="space-y-2 flex-1 flex flex-col justify-center">
-                    {BEFORE_ITEMS.map((item) => (
-                      <li key={item} className="text-sm text-muted-foreground/50 line-through">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="p-5 text-left flex flex-col h-full bg-muted/30">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-accent mb-3">After</p>
-                  <ul className="space-y-2 flex-1 flex flex-col justify-center">
-                    {AFTER_ITEMS.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-sm text-foreground font-medium">
-                        <Check className="h-3.5 w-3.5 shrink-0 mt-0.5 text-accent" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        {/* Comparison strip */}
+        <Reveal delay={400} className="mt-20 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-border/60 border border-border/60 rounded-lg overflow-hidden bg-card">
+            <div className="p-6 text-left">
+              <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60 mb-4">
+                Before
+              </p>
+              <ul className="space-y-2">
+                {BEFORE_ITEMS.map((item) => (
+                  <li key={item} className="text-sm text-muted-foreground/60 line-through">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="p-6 text-left bg-accent-soft/40">
+              <p className="text-[10px] uppercase tracking-[0.18em] text-accent mb-4">After</p>
+              <ul className="space-y-2">
+                {AFTER_ITEMS.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-foreground">
+                    <Check className="h-3.5 w-3.5 shrink-0 mt-0.5 text-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       {/* Collapse overlay */}
@@ -325,9 +332,14 @@ export default function Home() {
       )}
 
       {/* Inside the Engine — animated tabs */}
-      <section id="product" className="bg-muted/50 py-16 relative z-20">
+      <section id="product" className="bg-muted/40 border-y border-border/60 py-20 relative z-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className={`text-3xl md:text-4xl font-normal text-center mb-2 ${displayFont}`}>Inside the Engine</h2>
+          <Reveal className="text-center mb-12">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground/80 mb-3">Product</p>
+            <h2 className={`text-3xl md:text-5xl font-normal tracking-tight leading-tight ${displayFont}`}>
+              Inside the engine.
+            </h2>
+          </Reveal>
           <div className="flex gap-0 mb-6">
             {TABS.map((tab, idx) => {
               const Icon = tab.icon;
@@ -374,8 +386,11 @@ export default function Home() {
       </section>
 
       {/* How It Works — chevron stepper */}
-      <section id="how-it-works" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <h2 className={`text-3xl md:text-4xl font-normal text-center mb-2 ${displayFont}`}>How It Works</h2>
+      <section id="how-it-works" className="max-w-6xl mx-auto px-6 sm:px-8 py-20">
+        <Reveal className="text-center mb-12">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground/80 mb-3">Workflow</p>
+          <h2 className={`text-3xl md:text-5xl font-normal tracking-tight leading-tight ${displayFont}`}>How it works.</h2>
+        </Reveal>
 
         {/* Chevron stepper bar */}
         <div className="flex w-full gap-0 mb-8">
@@ -442,27 +457,25 @@ export default function Home() {
       </section>
 
       {/* Capabilities */}
-      <section id="capabilities" className="bg-muted/50 py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <h2 className={`text-3xl md:text-4xl font-normal text-center mb-2 ${displayFont}`}>Capabilities</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CAPABILITIES.map((cap) => {
+      <section id="capabilities" className="bg-muted/40 border-y border-border/60 py-20">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8">
+          <Reveal className="text-center mb-14">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground/80 mb-3">Capabilities</p>
+            <h2 className={`text-3xl md:text-5xl font-normal tracking-tight leading-tight ${displayFont}`}>
+              Built for sales planners.
+            </h2>
+          </Reveal>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border/60 border border-border/60 rounded-lg overflow-hidden">
+            {CAPABILITIES.map((cap, i) => {
               const Icon = cap.icon;
               return (
-                <Card
-                  key={cap.title}
-                  className="transition-all duration-200 hover:scale-[1.03] hover:shadow-lg hover:border-primary/30 cursor-default h-full"
-                >
-                  <CardContent className="p-6 h-full flex flex-col">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                        <Icon className="h-5 w-5 text-primary" />
-                      </div>
-                      <h4 className={`font-normal text-2xl ${displayFont}`}>{cap.title}</h4>
-                    </div>
-                    <p className="text-xs text-muted-foreground flex-1 flex items-center">{cap.desc}</p>
-                  </CardContent>
-                </Card>
+                <Reveal key={cap.title} delay={i * 60}>
+                  <div className="bg-background h-full p-6 hover:bg-accent-soft/30 transition-colors duration-300">
+                    <Icon className="h-4 w-4 text-muted-foreground mb-4" />
+                    <h4 className={`font-normal text-xl tracking-tight mb-2 ${displayFont}`}>{cap.title}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{cap.desc}</p>
+                  </div>
+                </Reveal>
               );
             })}
           </div>
@@ -470,33 +483,43 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
-        <h2 className={`text-3xl md:text-4xl font-normal text-center mb-2 ${displayFont}`}>
-          Frequently Asked Questions
-        </h2>
-        <Accordion type="single" collapsible className="w-full">
-          {FAQ_ITEMS.map((item, idx) => (
-            <AccordionItem key={idx} value={`faq-${idx}`}>
-              <AccordionTrigger className="text-left text-sm">{item.q}</AccordionTrigger>
-              <AccordionContent className="text-muted-foreground text-sm">{item.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+      <section id="faq" className="max-w-3xl mx-auto px-6 sm:px-8 py-20">
+        <Reveal className="text-center mb-12">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground/80 mb-3">Questions</p>
+          <h2 className={`text-3xl md:text-5xl font-normal tracking-tight leading-tight ${displayFont}`}>
+            Frequently asked.
+          </h2>
+        </Reveal>
+        <Reveal>
+          <Accordion type="single" collapsible className="w-full">
+            {FAQ_ITEMS.map((item, idx) => (
+              <AccordionItem key={idx} value={`faq-${idx}`} className="border-border/60">
+                <AccordionTrigger className="text-left text-sm hover:no-underline">{item.q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground text-sm leading-relaxed">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
       </section>
 
       {/* CTA */}
-      <section className="bg-foreground text-background py-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className={`text-3xl md:text-4xl font-normal mb-3 ${displayFont}`}>Ready to optimize your GTM plan?</h2>
-          <p className="text-background/70 mb-6">
+      <section className="bg-foreground text-background py-24">
+        <Reveal className="max-w-3xl mx-auto px-6 sm:px-8 text-center">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-background/50 mb-4">
+            Launch
+          </p>
+          <h2 className={`text-3xl md:text-5xl font-normal tracking-tight leading-tight mb-4 ${displayFont}`}>
+            Ready to plan?
+          </h2>
+          <p className="text-background/70 mb-8 max-w-md mx-auto leading-relaxed">
             Configure your parameters, run the engine, and get a defensible allocation in minutes.
           </p>
           <Link to="/engine">
-            <Button size="lg" variant="secondary" className="text-base px-8 py-3 rounded-md">
-              Launch Planning Engine
+            <Button className="h-10 px-6 rounded-full bg-background text-foreground hover:bg-background/90 text-sm tracking-wide">
+              Launch Planning Engine →
             </Button>
           </Link>
-        </div>
+        </Reveal>
       </section>
 
       {/* Terms of Use */}

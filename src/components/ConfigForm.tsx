@@ -52,24 +52,24 @@ function Section({ title, icon: Icon, defaultOpen = false, children, badge }: {
         <CollapsibleTrigger asChild>
           <button
             type="button"
-            className="group w-full flex items-center justify-between py-5 text-left hover:opacity-80 transition-opacity"
+            className="group w-full flex items-center justify-between py-3.5 text-left hover:opacity-80 transition-opacity"
           >
-            <span className="flex items-center gap-3">
+            <span className="flex items-center gap-2.5">
               <ChevronRight
                 className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${open ? "rotate-90" : ""}`}
               />
               <Icon className="h-4 w-4 text-muted-foreground" />
-              <span className="font-display text-xl tracking-tight">{title}</span>
+              <span className="font-display text-[1.35rem] leading-none tracking-tight">{title}</span>
             </span>
             {badge && (
-              <span className="text-xs text-muted-foreground tabular-nums tracking-wide">
+              <span className="text-xs text-muted-foreground tabular-nums">
                 {badge}
               </span>
             )}
           </button>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <div className="pl-7 pr-1 pb-6 space-y-4">
+          <div className="pl-6 pr-1 pb-5 pt-1 space-y-3">
             {children}
           </div>
         </CollapsibleContent>
@@ -81,7 +81,7 @@ function Section({ title, icon: Icon, defaultOpen = false, children, badge }: {
 function Field({ label, tip, children, className }: { label: string; tip?: string; children: React.ReactNode; className?: string }) {
   return (
     <div className={className}>
-      <Label className="text-sm font-medium flex items-center mb-1.5">
+      <Label className="text-[11px] uppercase tracking-[0.08em] text-muted-foreground font-medium flex items-center mb-1.5">
         {label}
         {tip && <InfoTip text={tip} />}
       </Label>
@@ -364,7 +364,7 @@ export default function ConfigForm({ config, onChange }: ConfigFormProps) {
     <div className="border-y border-border/40">
       {/* TARGETS */}
       <Section title="Targets" icon={Target} defaultOpen badge={formatCurrency(config.targets.annual_target)}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3">
           <Field label="Target Source" tip="'growth' derives from prior year × growth rate; 'fixed' uses the annual target directly">
             <Select value={config.targets.target_source} onValueChange={(v) => {
               const src = v as "fixed" | "growth";
@@ -484,7 +484,7 @@ export default function ConfigForm({ config, onChange }: ConfigFormProps) {
 
       {/* ALLOCATION */}
       <Section title="Allocation" icon={Sliders}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-3">
           <Field label="Optimizer Mode" tip="Greedy: fastest, uses a deterministic 1% step heuristic — good for quick iterations. Solver (SLSQP): precise continuous optimization, fast convergence, best for most production runs. Solver (Trust-constr): most robust for highly constrained problems but slowest — use when SLSQP fails to converge.">
             <Select
               value={

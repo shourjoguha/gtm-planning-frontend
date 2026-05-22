@@ -1135,8 +1135,8 @@ export default function ResultsDashboard() {
       mode: "lines" as const,
       fill: "tozeroy" as const,
       name: m.label,
-      line: { color: m.color, width: 2, shape: "spline" as const, smoothing: 1.3 },
-      fillcolor: m.color.replace(")", ", 0.1)").replace("hsl(", "hsla("),
+      line: { color: m.color, width: 2.25, shape: "spline" as const, smoothing: 1.3 },
+      fillcolor: m.color.replace("hsl(", "hsla(").replace(/\)$/, ", 0.06)"),
       hovertemplate: `${m.label}: %{y:$,.0f}<extra></extra>`,
     }));
 
