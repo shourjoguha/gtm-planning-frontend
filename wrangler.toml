@@ -1,7 +1,0 @@
-name = "gtm-planning-frontend"
-compatibility_date = "2025-05-01"
-pages_build_output_dir = "./dist"
-
-[vars]
-# Build-time vars set via Cloudflare Pages dashboard. Listed here for visibility.
-# VITE_API_BASE_URL = "https://gtm-engine-sales-planning-tofu-production.up.railway.app"
