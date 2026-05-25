@@ -10,9 +10,13 @@ type RevealProps = {
   delay?: number;
   className?: string;
   as?: keyof JSX.IntrinsicElements;
+  /** Vertical offset (in px) the element lifts from. Defaults to a subtle 12px. */
+  y?: number;
+  /** Transition duration in ms. Defaults to 700. */
+  duration?: number;
 };
 
-export default function Reveal({ children, delay = 0, className, as: Tag = "div" }: RevealProps) {
+export default function Reveal({ children, delay = 0, className, as: Tag = "div", y = 12, duration = 700 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
@@ -45,11 +49,16 @@ export default function Reveal({ children, delay = 0, className, as: Tag = "div"
       // @ts-expect-error generic ref assignment is fine here
       ref={ref}
       className={cn(
-        "transition-all duration-700 ease-out will-change-transform",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
+        "ease-premium will-change-transform",
+        visible ? "opacity-100" : "opacity-0",
         className,
       )}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{
+        transitionProperty: "opacity, transform",
+        transitionDuration: `${duration}ms`,
+        transitionDelay: `${delay}ms`,
+        transform: visible ? "translateY(0)" : `translateY(${y}px)`,
+      }}
     >
       {children}
     </Tag>
