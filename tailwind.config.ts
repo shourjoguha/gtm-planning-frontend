@@ -17,6 +17,11 @@ export default {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
         display: ['Instrument Serif', ...defaultTheme.fontFamily.serif],
+        playfair: ['Playfair Display', 'Instrument Serif', ...defaultTheme.fontFamily.serif],
+        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+      },
+      transitionTimingFunction: {
+        premium: "cubic-bezier(0.22, 1, 0.36, 1)",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -102,10 +107,26 @@ export default {
             height: "0",
           },
         },
+        "mesh-drift": {
+          "0%": { transform: "rotate(0deg) scale(1)" },
+          "50%": { transform: "rotate(180deg) scale(1.25)" },
+          "100%": { transform: "rotate(360deg) scale(1)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { transform: "scale(1)", boxShadow: "0 0 0 0 rgba(67,56,202,0)" },
+          "50%": { transform: "scale(1.02)", boxShadow: "0 0 20px 0 rgba(67,56,202,0.45)" },
+        },
+        "status-ping": {
+          "0%": { transform: "scale(1)", opacity: "0.7" },
+          "75%, 100%": { transform: "scale(2.2)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "mesh-drift": "mesh-drift 30s linear infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "status-ping": "status-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite",
       },
     },
   },
