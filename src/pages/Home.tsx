@@ -514,10 +514,10 @@ export default function Home() {
             <div>
               <MonoLabel className="text-white/40">Contact</MonoLabel>
               <a
-                href="mailto:guha.shourjo@gmail.com"
+                href="mailto:proeqiq@gmail.com"
                 className="mt-5 block text-lg text-white/80 transition-colors hover:text-white"
               >
-                guha.shourjo@gmail.com
+                proeqiq@gmail.com
               </a>
             </div>
             <div>
